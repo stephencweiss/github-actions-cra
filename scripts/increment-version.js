@@ -4,8 +4,7 @@ const { spawnSync } = require('child_process');
 const gitAdd = () => spawnSync('git', ['add', 'package.json'])
 const gitCommit = (message) => spawnSync('git', ['commit', `-m '${message}'`])
 
-
-function incrementVersion(incrementer){
+function incrementVersion(incrementer, bump = false){
 
     // read the package.json
     const rawPackage = fs.readFileSync('./package.json')
@@ -23,9 +22,10 @@ function incrementVersion(incrementer){
         if (err) {
             return console.log('Error!', err)
         }
-
-        gitAdd();
-        gitCommit(nextVersion)
+        if(bump){
+            gitAdd();
+            gitCommit(nextVersion)
+        }
         return console.log('All clear')
     })
 }

@@ -6,4 +6,4 @@ function incMinorVersion(version) {
   const newMinor = String(Number(minor) + 1);
   return [major, newMinor, patch].join(".");
 }
-incrementVersion(incMinorVersion);
+incrementVersion(incMinorVersion, true);
