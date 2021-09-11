@@ -1,13 +1,6 @@
-#!/usr/bin/env node
 const fs = require('fs');
 
-function incrementMinorVersion(){
-
-    function _incMinorVersion(version){
-        const [major, minor, patch] = version.split('.');
-        const newMinor = String(Number(minor) +1);
-        return [major, newMinor, patch].join('.')
-    }
+function incrementVersion(incrementer){
 
     // read the package.json
     const rawPackage = fs.readFileSync('./package.json')
@@ -17,7 +10,7 @@ function incrementMinorVersion(){
     const currentVersion = parsedPackage?.version
 
     // update the version
-    const nextVersion = _incMinorVersion(currentVersion)
+    const nextVersion = incrementer(currentVersion)
     parsedPackage.version = nextVersion
 
     // save the package.json
@@ -29,4 +22,4 @@ function incrementMinorVersion(){
     })
 }
 
-incrementMinorVersion();
+module.exports = {incrementVersion}

@@ -1,4 +1,4 @@
-name: "Learn Github Actions: push to main"
+name: "Workflow for push to main"
 on:
   push:
     branches:
@@ -24,6 +24,5 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - run: echo "I am a job"
-      - run: chmod +x ./scripts/node-script.js
-      - run: ./scripts/node-script.js
+      - run: chmod +x ./scripts/increment-minor.js
+      - run: ./scripts/increment-minor.js

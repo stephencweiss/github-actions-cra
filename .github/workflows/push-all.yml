@@ -1,6 +1,8 @@
-name: "Learn Github Actions: Push all"
+name: "Workflow for all pushes, except main"
 on:
-  push
+  push:
+    branches-ignore:
+      - main
 jobs:
   # build:
   #   runs-on: ubuntu-latest
@@ -22,7 +24,5 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '14'
-      - run: echo "I am a job"
-      - run: chmod +x ./scripts/node-script.js
-      - run: pwd && ls -al
-      - run: ./scripts/node-script.js
+      - run: chmod +x ./scripts/increment-patch.js
+      - run: ./scripts/increment-patch.js
