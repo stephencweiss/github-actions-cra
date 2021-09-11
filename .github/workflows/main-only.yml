@@ -1,0 +1,18 @@
+name: "Workflow for push to main"
+on:
+  push:
+    branches:
+      - main
+jobs:
+  scripts:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - run: chmod +x ./scripts/increment-minor.js
+      - run: ./scripts/increment-minor.js
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'Minor version bump'
