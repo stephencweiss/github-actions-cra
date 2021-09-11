@@ -26,3 +26,15 @@ jobs:
           node-version: '14'
       - run: chmod +x ./scripts/increment-patch.js
       - run: ./scripts/increment-patch.js
+      # - name: upload version number from increment
+      #   uses: actions/upload-artifact@v2
+      #   with:
+      #     name: version
+      #     path: temp-version.txt
+      # - name: make version number from increment available
+      #   uses: actions/download-artifact@v2
+      #   with:
+      #     name: version
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'Minor version bump'
