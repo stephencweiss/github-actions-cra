@@ -1,4 +1,9 @@
 const fs = require('fs');
+const { spawnSync } = require('child_process');
+
+const gitAdd = () => spawnSync('git', ['add', 'package.json'])
+const gitCommit = (message) => spawnSync('git', ['commit', `-m '${message}'`])
+
 
 function incrementVersion(incrementer){
 
@@ -18,6 +23,9 @@ function incrementVersion(incrementer){
         if (err) {
             return console.log('Error!', err)
         }
+
+        gitAdd();
+        gitCommit(nextVersion)
         return console.log('All clear')
     })
 }
