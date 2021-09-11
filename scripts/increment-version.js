@@ -22,10 +22,10 @@ function incrementVersion(incrementer, bump = false){
         if (err) {
             return console.log('Error!', err)
         }
-        if(bump){
+        // if(bump){
             gitAdd();
             gitCommit(nextVersion)
-        }
+        // }
         return console.log('All clear')
     })
 }
