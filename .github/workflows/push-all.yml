@@ -19,4 +19,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "I am a job"
-      - run: ./.github/scripts/node-script.js
+      - run: "${GITHUB_WORKSPACE}/.github/scripts/node-script.js"
