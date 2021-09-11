@@ -1,8 +1,4 @@
 const fs = require('fs');
-const { spawnSync } = require('child_process');
-
-const gitAdd = () => spawnSync('git', ['add', 'package.json'])
-const gitCommit = (message) => spawnSync('git', ['commit', `-m '${message}'`])
 
 function incrementVersion(incrementer, bump = false){
 
@@ -22,10 +18,10 @@ function incrementVersion(incrementer, bump = false){
         if (err) {
             return console.log('Error!', err)
         }
-        if(bump || true){
-            gitAdd();
-            gitCommit(nextVersion)
-        }
+        // if(bump || true){
+        //     gitAdd();
+        //     gitCommit(nextVersion)
+        // }
         fs.writeFile('./temp-version.txt', Buffer.from(nextVersion), {encoding: 'utf-8'}, (err) => {
             if(err){
                 return console.log(`Temp file error: ${err}`)
