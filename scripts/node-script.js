@@ -9,6 +9,6 @@ console.log('I am a simple script!')
 
 const fs = require('fs');
 
-const rawPackage = fs.readFileSync('../package.json')
+const rawPackage = fs.readFileSync('./package.json')
 const parsedPackage = JSON.parse(rawPackage)
 console.log({parsedPackage})
