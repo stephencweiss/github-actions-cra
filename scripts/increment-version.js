@@ -26,8 +26,15 @@ function incrementVersion(incrementer, bump = false){
             gitAdd();
             gitCommit(nextVersion)
         // }
+        fs.writeFile('./temp-version.txt', Buffer.from(nextVersion), {encoding: 'utf-8'}, (err) => {
+            if(err){
+                return console.log(`Temp file error: ${err}`)
+            }
+            return console.log('Successfully wrote to temp file');
+        })
         return console.log('All clear')
     })
+
 }
 
 module.exports = {incrementVersion}
